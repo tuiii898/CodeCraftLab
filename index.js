@@ -1,3 +1,1 @@
-function getMin(arr) {
-  return Math.min(...arr);
-}
+const maxN = (arr, n = 1) => [...arr].sort((a, b) => b - a).slice(0, n);
