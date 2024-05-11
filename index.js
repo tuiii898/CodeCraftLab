@@ -1,22 +1,9 @@
-function permuteUnique(nums) {
-  nums.sort((a, b) => a - b);
-  const result = [];
-  const used = new Array(nums.length).fill(false);
-  backtrack([]);
-  return result;
-  function backtrack(permutation) {
-    if (permutation.length === nums.length) {
-      result.push([...permutation]);
-      return;
-    }
-    for (let i = 0; i < nums.length; i++) {
-      if (used[i] || (i > 0 && nums[i] === nums[i - 1] && !used[i - 1]))
-        continue;
-      used[i] = true;
-      permutation.push(nums[i]);
-      backtrack(permutation);
-      permutation.pop();
-      used[i] = false;
-    }
+function isSymmetric(root) {
+  if (!root) return true;
+  return isMirror(root.left, root.right);
+  function isMirror(left, right) {
+    if (!left && !right) return true;
+    if (!left || !right || left.val !== right.val) return false;
+    return isMirror(left.left, right.right) && isMirror(left.right, right.left);
   }
 }
