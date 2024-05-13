@@ -1,16 +1,16 @@
-function permute(nums) {
+function combinationSum(candidates, target) {
   const result = [];
-  backtrack([]);
+  backtrack(0, [], 0);
   return result;
-  function backtrack(current) {
-    if (current.length === nums.length) {
+  function backtrack(start, current, sum) {
+    if (sum === target) {
       result.push([...current]);
       return;
     }
-    for (const num of nums) {
-      if (current.includes(num)) continue;
-      current.push(num);
-      backtrack(current);
+    if (sum > target || start === candidates.length) return;
+    for (let i = start; i < candidates.length; i++) {
+      current.push(candidates[i]);
+      backtrack(i, current, sum + candidates[i]);
       current.pop();
     }
   }
